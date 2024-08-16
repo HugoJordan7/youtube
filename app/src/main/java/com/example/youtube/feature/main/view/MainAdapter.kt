@@ -34,7 +34,7 @@ class MainAdapter(
                 setOnClickListener{
                     onClick.invoke(item)
                 }
-                Picasso.get().load(item.videoUrl).into(findViewById<ImageView>(R.id.video_thumbnail))
+                Picasso.get().load(item.thumbnailUrl).into(findViewById<ImageView>(R.id.video_thumbnail))
                 Picasso.get().load(item.publisher.pictureProfileUrl).into(findViewById<ImageView>(R.id.video_author))
                 findViewById<TextView>(R.id.video_title).text = item.title
                 findViewById<TextView>(R.id.video_info).text = context.getString(
