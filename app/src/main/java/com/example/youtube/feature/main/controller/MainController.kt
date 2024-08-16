@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainController(
     private var view: MainActivity?,
@@ -16,25 +17,39 @@ class MainController(
 
     private val controllerScope = CoroutineScope(Dispatchers.IO)
 
-    fun findVideoList(){
+    fun findVideoList() {
         controllerScope.launch {
             view?.showProgress(true)
             repository.findVideoList(object : RequestCallback<ListVideo> {
                 override fun onSuccess(data: ListVideo) {
-                    if (data.data.isEmpty()) view?.displayFailure("Nenhum post encontrado")
-                    else view?.displayVideoList(data)
+                    mainScope {
+                        if (data.data.isEmpty()) view?.displayFailure("Nenhum post encontrado")
+                        else view?.displayVideoList(data)
+                    }
                 }
                 override fun onFailure(message: String) {
-                    view?.displayFailure(message)
+                    mainScope{
+                        view?.displayFailure(message)
+                    }
                 }
                 override fun onComplete() {
-                    view?.showProgress(false)
+                    mainScope{
+                        view?.showProgress(false)
+                    }
                 }
             })
         }
     }
 
-    fun onDestroy(){
+    private fun mainScope(response: () -> Unit){
+        controllerScope.launch {
+            withContext(Dispatchers.Main){
+                response.invoke()
+            }
+        }
+    }
+
+    fun onDestroy() {
         controllerScope.cancel()
         view = null
     }

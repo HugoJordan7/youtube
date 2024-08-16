@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.R
 import com.example.youtube.base.RequestCallback
 import com.example.youtube.databinding.ActivityMainBinding
+import com.example.youtube.di.DependencyInjector
 import com.example.youtube.feature.main.controller.MainController
 import com.example.youtube.feature.main.data.MainDataSource
 import com.example.youtube.feature.main.data.MainRepository
@@ -39,8 +40,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        //TODO: after create repository || controller = MainController(this)
-
         adapter = MainAdapter(emptyList()){ video ->
 
         }
@@ -49,6 +48,11 @@ class MainActivity : AppCompatActivity() {
             mainRvVideo.adapter = adapter
             mainRvVideo.layoutManager = LinearLayoutManager(this@MainActivity)
         }
+
+        val repository = DependencyInjector.provideMainRepository()
+        controller = MainController(this, repository)
+        controller.findVideoList()
+
     }
 
     fun showProgress(enabled: Boolean){
