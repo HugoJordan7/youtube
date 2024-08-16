@@ -10,10 +10,14 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.R
 import com.example.youtube.databinding.ActivityMainBinding
+import com.example.youtube.feature.main.controller.MainController
+import com.example.youtube.model.Video
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var controller: MainController
+    private lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +32,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        controller = MainController(this)
+        adapter = MainAdapter(emptyList()){ video ->
+
+        }
+
         binding.apply {
-            mainRvVideo.adapter = MainAdapter(emptyList())
+            mainRvVideo.adapter = adapter
             mainRvVideo.layoutManager = LinearLayoutManager(this@MainActivity)
         }
     }
+
+    fun displayVideoList(videos: List<Video>){
+        adapter.items = videos
+        adapter.notifyItemChanged(0)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        controller.onDestroy()
+    }
+
 }
