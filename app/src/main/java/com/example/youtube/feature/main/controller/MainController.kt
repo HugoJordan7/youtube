@@ -18,8 +18,8 @@ class MainController(
     private val controllerScope = CoroutineScope(Dispatchers.IO)
 
     fun findVideoList() {
+        view?.showProgress(true)
         controllerScope.launch {
-            view?.showProgress(true)
             repository.findVideoList(object : RequestCallback<ListVideo> {
                 override fun onSuccess(data: ListVideo) {
                     mainScope {
