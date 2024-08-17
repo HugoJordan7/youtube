@@ -4,6 +4,7 @@ import android.graphics.drawable.GradientDrawable.Orientation
 import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
 import android.os.Message
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -30,9 +31,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.mainToolbar)
+        supportActionBar?.title = ""
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -66,6 +69,11 @@ class MainActivity : AppCompatActivity() {
 
     fun displayFailure(message: String){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onDestroy() {
