@@ -1,24 +1,17 @@
 package com.example.youtube.feature.main.view
 
-import android.graphics.drawable.GradientDrawable.Orientation
-import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
-import android.os.Message
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.R
-import com.example.youtube.base.RequestCallback
 import com.example.youtube.databinding.ActivityMainBinding
+import com.example.youtube.databinding.VideoDetailBinding
 import com.example.youtube.di.DependencyInjector
 import com.example.youtube.feature.main.controller.MainController
-import com.example.youtube.feature.main.data.MainDataSource
-import com.example.youtube.feature.main.data.MainRepository
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
 
@@ -27,24 +20,22 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var controller: MainController
     private lateinit var adapter: MainAdapter
+    private lateinit var videoBinding: VideoDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        videoBinding = VideoDetailBinding.bind(binding.root)
 
         setSupportActionBar(binding.mainToolbar)
         supportActionBar?.title = ""
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.motion_container)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        videoBinding.videoLayer.alpha = 0f
 
         adapter = MainAdapter(emptyList()){ video ->
-
+            showOverlayView(video)
         }
 
         binding.apply {
@@ -56,6 +47,13 @@ class MainActivity : AppCompatActivity() {
         controller = MainController(this, repository)
         controller.findVideoList()
 
+    }
+
+    private fun showOverlayView(video: Video){
+        videoBinding.videoLayer.animate().apply {
+            duration = 400
+            alpha(0.5f)
+        }
     }
 
     fun showProgress(enabled: Boolean){
