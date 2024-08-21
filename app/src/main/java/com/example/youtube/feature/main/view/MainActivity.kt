@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.R
 import com.example.youtube.databinding.ActivityMainBinding
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             duration = 400
             alpha(0.5f)
         }
+        binding.motionContainer.setTransitionListener(MotionTransition(videoBinding.videoLayer))
     }
 
     fun showProgress(enabled: Boolean){
