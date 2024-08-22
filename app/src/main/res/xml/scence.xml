@@ -113,6 +113,15 @@
     <ConstraintSet android:id="@+id/end">
 
         <Constraint
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toTopOf="@+id/container_scroll"
+            app:layout_constraintBottom_toTopOf="@id/container_scroll"/>
+
+        <Constraint
             android:id="@+id/hide_player"
             android:layout_width="36dp"
             android:layout_height="36dp"
