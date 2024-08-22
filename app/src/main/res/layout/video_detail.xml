@@ -75,8 +75,6 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/hide_player"
         style="@style/VideoPlayerItemTop"
-        app:layout_constraintTop_toTopOf="@id/video_player"
-        app:layout_constraintStart_toStartOf="@id/video_player"
         tools:alpha="1"
         android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
