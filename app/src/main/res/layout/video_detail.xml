@@ -19,10 +19,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/video_player"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -36,10 +32,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
-        app:layout_constraintTop_toTopOf="@id/video_player"
-        app:layout_constraintBottom_toBottomOf="@id/video_player"
-        app:layout_constraintStart_toStartOf="@id/video_player"
-        app:layout_constraintEnd_toEndOf="@id/video_player"
         android:orientation="vertical">
 
         <TextView
