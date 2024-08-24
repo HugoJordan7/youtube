@@ -19,7 +19,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/white"
-        android:orientation="horizontal" />
+        android:orientation="horizontal">
+
+        <include layout="@layout/video_detail_content"/>
+
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/video_player"
