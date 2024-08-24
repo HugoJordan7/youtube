@@ -69,7 +69,7 @@
     <View
         android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="0.5dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -122,6 +122,13 @@
     <View
         android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="0.5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/video_detail_rv"
+        tools:listitem="@layout/item_video_detail"
+        tools:itemCount="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
