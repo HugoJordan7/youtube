@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/video_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/spam"
+        android:maxLines="2"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="14sp"
+        android:textAlignment="textStart"/>
+
+    <TextView
+        android:id="@+id/video_detail_views"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/views"
+        android:maxLines="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="12sp"
+        android:textAlignment="textStart"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/video_detail_like"
+            style="@style/VideoDetailButton"
+            android:text="25k"
+            android:drawableTop="@drawable/ic_thumb_up_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/video_detail_dislike"
+            style="@style/VideoDetailButton"
+            android:text="3k"
+            android:drawableTop="@drawable/ic_thumb_down_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/video_detail_share"
+            style="@style/VideoDetailButton"
+            android:text="@string/share"
+            android:drawableTop="@drawable/ic_share_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/video_detail_download"
+            style="@style/VideoDetailButton"
+            android:text="@string/download"
+            android:drawableTop="@drawable/ic_file_download_black_24dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/video_detail_save"
+            style="@style/VideoDetailButton"
+            android:text="@string/save"
+            android:drawableTop="@drawable/ic_playlist_add_black2_24dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/channel_logo"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/channel_name"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:text="@string/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/channel_logo"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/channel_subscribers"
+            android:textSize="12sp"
+            android:text="6.0M subscribers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/channel_name"
+            android:layout_toEndOf="@id/channel_logo"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/subscribe_button"
+            android:drawableStart="@drawable/icon_yt"
+            android:drawablePadding="8dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="@string/subscribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <View
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/video_detail_rv"
+        tools:listitem="@layout/item_video_detail"
+        tools:itemCount="5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
