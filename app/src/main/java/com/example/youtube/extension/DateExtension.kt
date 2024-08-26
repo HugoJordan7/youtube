@@ -5,8 +5,5 @@ import java.util.Date
 import java.util.Locale
 
 fun Date.formatted(): String{
-    return SimpleDateFormat(
-        "d MMM yyyy",
-        Locale("pt", "BR")
-    ).format(this)
+    return SimpleDateFormat("d MMM yyyy", Locale("pt", "BR")).format(this)
 }

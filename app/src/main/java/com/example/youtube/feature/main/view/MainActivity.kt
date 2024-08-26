@@ -11,17 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.R
 import com.example.youtube.databinding.ActivityMainBinding
 import com.example.youtube.databinding.VideoDetailBinding
+import com.example.youtube.databinding.VideoDetailContentBinding
 import com.example.youtube.di.DependencyInjector
 import com.example.youtube.feature.main.controller.MainController
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
+import com.example.youtube.model.videos
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var controller: MainController
     private lateinit var adapter: MainAdapter
+    private lateinit var detailAdapter: VideoDetailAdapter
     private lateinit var videoBinding: VideoDetailBinding
+    private lateinit var detailContentBinding: VideoDetailContentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         videoBinding = VideoDetailBinding.bind(binding.root)
+        detailContentBinding = VideoDetailContentBinding.bind(videoBinding.containerScroll)
 
         setSupportActionBar(binding.mainToolbar)
         supportActionBar?.title = ""
@@ -38,10 +44,15 @@ class MainActivity : AppCompatActivity() {
         adapter = MainAdapter(emptyList()){ video ->
             showOverlayView(video)
         }
-
         binding.apply {
             mainRvVideo.adapter = adapter
             mainRvVideo.layoutManager = LinearLayoutManager(this@MainActivity)
+        }
+
+        detailAdapter = VideoDetailAdapter(videos)
+        detailContentBinding.apply {
+            videoDetailRv.adapter = detailAdapter
+            videoDetailRv.layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
         val repository = DependencyInjector.provideMainRepository()
@@ -56,6 +67,11 @@ class MainActivity : AppCompatActivity() {
             alpha(0.5f)
         }
         binding.motionContainer.setTransitionListener(MotionTransition(videoBinding.videoLayer))
+        detailContentBinding.apply {
+            videoDetailTitle.text = video.title
+            channelName.text = video.publisher.name
+            Picasso.get().load(video.publisher.pictureProfileUrl).into(channelLogo)
+        }
     }
 
     fun showProgress(enabled: Boolean){
