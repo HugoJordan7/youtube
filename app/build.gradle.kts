@@ -45,8 +45,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    
     implementation(libs.picasso)
     implementation(libs.gson)
+
+    implementation(libs.exo.player)
+    implementation(libs.exo.player.dash)
+    implementation(libs.media3.ui)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

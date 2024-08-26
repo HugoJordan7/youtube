@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.R
 import com.example.youtube.databinding.ActivityMainBinding
@@ -21,25 +20,30 @@ import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
     private lateinit var controller: MainController
+
     private lateinit var adapter: MainAdapter
     private lateinit var detailAdapter: VideoDetailAdapter
-    private lateinit var videoBinding: VideoDetailBinding
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var detailBinding: VideoDetailBinding
     private lateinit var detailContentBinding: VideoDetailContentBinding
+
+    private lateinit var youtubePlayer: YoutubePlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        videoBinding = VideoDetailBinding.bind(binding.root)
-        detailContentBinding = VideoDetailContentBinding.bind(videoBinding.containerScroll)
+        detailBinding = VideoDetailBinding.bind(binding.root)
+        detailContentBinding = VideoDetailContentBinding.bind(detailBinding.containerScroll)
 
         setSupportActionBar(binding.mainToolbar)
         supportActionBar?.title = ""
 
-        videoBinding.videoLayer.alpha = 0f
+        detailBinding.videoLayer.alpha = 0f
 
         adapter = MainAdapter(emptyList()){ video ->
             showOverlayView(video)
@@ -59,14 +63,26 @@ class MainActivity : AppCompatActivity() {
         controller = MainController(this, repository)
         controller.findVideoList()
 
+        preparePlayer()
+
+    }
+
+    private fun preparePlayer(){
+        youtubePlayer = YoutubePlayer(this)
+        detailBinding.videoSurface.holder.addCallback(youtubePlayer)
     }
 
     private fun showOverlayView(video: Video){
-        videoBinding.videoLayer.animate().apply {
-            duration = 400
-            alpha(0.5f)
+        binding.motionContainer.setTransitionListener(MotionTransition(detailBinding.videoLayer))
+
+        detailBinding.apply {
+            videoLayer.animate().apply {
+                duration = 400
+                alpha(0.5f)
+            }
+            youtubePlayer.setUrl(video.videoUrl)
         }
-        binding.motionContainer.setTransitionListener(MotionTransition(videoBinding.videoLayer))
+
         detailContentBinding.apply {
             videoDetailTitle.text = video.title
             channelName.text = video.publisher.name
@@ -95,6 +111,12 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         controller.onDestroy()
+        youtubePlayer.release()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        youtubePlayer.pause()
     }
 
 }
