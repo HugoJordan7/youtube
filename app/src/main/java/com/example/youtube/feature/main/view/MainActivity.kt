@@ -12,6 +12,7 @@ import com.example.youtube.databinding.ActivityMainBinding
 import com.example.youtube.databinding.VideoDetailBinding
 import com.example.youtube.databinding.VideoDetailContentBinding
 import com.example.youtube.di.DependencyInjector
+import com.example.youtube.extension.formatTime
 import com.example.youtube.feature.main.controller.MainController
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
@@ -69,6 +70,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun preparePlayer(){
         youtubePlayer = YoutubePlayer(this)
+        youtubePlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener{
+
+            override fun onPrepared(duration: Int) {
+                detailBinding.durationTime.text = duration.toLong().formatTime()
+            }
+
+            override fun onTrackTime(currentPosition: Long) {
+                detailBinding.seekBar.progress = currentPosition.toInt()
+                detailBinding.currentTime.text = currentPosition.formatTime()
+            }
+
+        }
+
         detailBinding.videoSurface.holder.addCallback(youtubePlayer)
     }
 
