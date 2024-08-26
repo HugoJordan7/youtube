@@ -11,6 +11,7 @@ activity = "1.8.0"
 constraintlayout = "2.1.4"
 picasso = "2.8"
 gson = "2.8.5"
+exoPlayer = "1.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -23,7 +24,9 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso"}
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"}
-
+exo-player = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "exoPlayer" }
+exo-player-dash = { group = "androidx.media3", name = "media3-exoplayer-dash", version.ref = "exoPlayer" }
+media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "exoPlayer" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
