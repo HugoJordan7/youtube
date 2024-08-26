@@ -28,9 +28,9 @@ class VideoDetailAdapter(var items: List<Video>): Adapter<VideoDetailAdapter.Vid
     inner class VideoDetailViewHolder(itemView: View): ViewHolder(itemView){
         fun bind(item: Video){
             with(itemView){
-                Picasso.get().load(item.publisher.pictureProfileUrl).into(findViewById<ImageView>(R.id.video_detail_author))
-                findViewById<TextView>(R.id.video_detail_title).text = item.title
-                findViewById<TextView>(R.id.video_detail_info).text = context.getString(
+                Picasso.get().load(item.thumbnailUrl).into(findViewById<ImageView>(R.id.detail_item_thumb))
+                findViewById<TextView>(R.id.detail_item_title).text = item.title
+                findViewById<TextView>(R.id.detail_item_info).text = context.getString(
                     R.string.info,
                     item.publisher.name,
                     item.viewsCountLabel,

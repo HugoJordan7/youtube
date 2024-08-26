@@ -16,6 +16,7 @@ import com.example.youtube.di.DependencyInjector
 import com.example.youtube.feature.main.controller.MainController
 import com.example.youtube.model.ListVideo
 import com.example.youtube.model.Video
+import com.example.youtube.model.videos
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
@@ -43,13 +44,12 @@ class MainActivity : AppCompatActivity() {
         adapter = MainAdapter(emptyList()){ video ->
             showOverlayView(video)
         }
-        detailAdapter = VideoDetailAdapter(emptyList())
-
         binding.apply {
             mainRvVideo.adapter = adapter
             mainRvVideo.layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
+        detailAdapter = VideoDetailAdapter(videos)
         detailContentBinding.apply {
             videoDetailRv.adapter = detailAdapter
             videoDetailRv.layoutManager = LinearLayoutManager(this@MainActivity)
