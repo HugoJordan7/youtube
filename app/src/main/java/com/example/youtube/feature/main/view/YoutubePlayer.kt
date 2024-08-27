@@ -39,7 +39,6 @@ class YoutubePlayer(private val context: Context): SurfaceHolder.Callback {
                     if(isPlaying) trackTime()
                 }
             })
-            youtubePlayerListener?.onPrepared(it.duration)
             play()
         }
     }
@@ -48,6 +47,7 @@ class YoutubePlayer(private val context: Context): SurfaceHolder.Callback {
         mediaPlayer?.apply {
             val currentPositionPercentage = currentPosition * 100 / duration
             youtubePlayerListener?.onTrackTime(currentPosition, currentPositionPercentage)
+            youtubePlayerListener?.onPrepared(duration)
             if(isPlaying){
                 Handler(Looper.getMainLooper()).postDelayed({
                     trackTime()

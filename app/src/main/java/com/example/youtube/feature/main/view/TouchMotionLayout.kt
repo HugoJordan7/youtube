@@ -167,7 +167,7 @@ class TouchMotionLayout(context: Context, attributeSet: AttributeSet) :
                 addUpdateListener {
                     seekBar.thumb.mutate().alpha = it.animatedValue as Int
                 }
-                duration = 400
+                duration = 600
             }
 
         animFadeIn.play(valueFadeIn)
@@ -179,7 +179,7 @@ class TouchMotionLayout(context: Context, attributeSet: AttributeSet) :
                 addUpdateListener {
                     seekBar.thumb.mutate().alpha = it.animatedValue as Int
                 }
-                duration = 400
+                duration = 600
             }
 
         animFadeOut.play(valueFadeOut)
