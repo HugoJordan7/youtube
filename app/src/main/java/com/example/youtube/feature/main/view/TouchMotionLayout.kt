@@ -142,7 +142,7 @@ class TouchMotionLayout(context: Context, attributeSet: AttributeSet) :
                 imageBase -> {
                     if (!isPaused) {
                         animateFade {
-                            animFadeOut.startDelay = 1000
+                            animFadeOut.startDelay = 2000
                             animFadeOut.start()
                         }
                     }
@@ -167,7 +167,7 @@ class TouchMotionLayout(context: Context, attributeSet: AttributeSet) :
                 addUpdateListener {
                     seekBar.thumb.mutate().alpha = it.animatedValue as Int
                 }
-                duration = 200
+                duration = 400
             }
 
         animFadeIn.play(valueFadeIn)
@@ -179,7 +179,7 @@ class TouchMotionLayout(context: Context, attributeSet: AttributeSet) :
                 addUpdateListener {
                     seekBar.thumb.mutate().alpha = it.animatedValue as Int
                 }
-                duration = 200
+                duration = 400
             }
 
         animFadeOut.play(valueFadeOut)

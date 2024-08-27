@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity() {
         youtubePlayer = YoutubePlayer(this)
         youtubePlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener{
 
-            override fun onPrepared(duration: Int) {
-                detailBinding.durationTime.text = duration.toLong().formatTime()
+            override fun onPrepared(duration: Long) {
+                detailBinding.durationTime.text = duration.formatTime()
             }
 
             override fun onTrackTime(currentPosition: Long, percent: Long) {

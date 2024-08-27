@@ -39,7 +39,7 @@ class YoutubePlayer(private val context: Context): SurfaceHolder.Callback {
                     if(isPlaying) trackTime()
                 }
             })
-
+            youtubePlayerListener?.onPrepared(it.duration)
             play()
         }
     }
@@ -77,7 +77,7 @@ class YoutubePlayer(private val context: Context): SurfaceHolder.Callback {
     }
 
     interface YoutubePlayerListener{
-        fun onPrepared(duration: Int)
+        fun onPrepared(duration: Long)
         fun onTrackTime(currentPosition: Long, percent: Long)
     }
 
