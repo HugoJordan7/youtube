@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.youtube.feature.main.view.TouchMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/motion_container"
@@ -60,4 +60,4 @@
 
     <include layout="@layout/video_detail"/>
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</com.example.youtube.feature.main.view.TouchMotionLayout>

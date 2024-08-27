@@ -1,8 +1,10 @@
 package com.example.youtube.feature.main.view
 
+import android.health.connect.datatypes.units.Percentage
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -66,18 +68,26 @@ class MainActivity : AppCompatActivity() {
 
         preparePlayer()
 
+        detailBinding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) youtubePlayer.seek(progress.toLong())
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+        })
+
     }
 
     private fun preparePlayer(){
         youtubePlayer = YoutubePlayer(this)
         youtubePlayer.youtubePlayerListener = object : YoutubePlayer.YoutubePlayerListener{
 
-            override fun onPrepared(duration: Int) {
-                detailBinding.durationTime.text = duration.toLong().formatTime()
+            override fun onPrepared(duration: Long) {
+                detailBinding.durationTime.text = duration.formatTime()
             }
 
-            override fun onTrackTime(currentPosition: Long) {
-                detailBinding.seekBar.progress = currentPosition.toInt()
+            override fun onTrackTime(currentPosition: Long, percent: Long) {
+                detailBinding.seekBar.progress = percent.toInt()
                 detailBinding.currentTime.text = currentPosition.formatTime()
             }
 
