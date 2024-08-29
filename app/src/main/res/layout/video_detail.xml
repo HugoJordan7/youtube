@@ -68,18 +68,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"/>
 
-<!--    <View-->
-<!--        android:id="@+id/view_frame"-->
-<!--        android:background="@android:color/black"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:alpha="0"-->
-<!--        tools:alpha="1"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/video_player"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/video_player"-->
-<!--        app:layout_constraintStart_toStartOf="@id/video_player"-->
-<!--        app:layout_constraintTop_toTopOf="@id/video_player" />-->
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/hide_player"
         style="@style/VideoPlayerItemTop"
