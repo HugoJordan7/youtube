@@ -6,7 +6,7 @@ O presente repositório é uma cópia do App do Youtube feito para fins de apren
 - Android Studio
 - Kotlin
 
-# Fundamentos trabalhados=
+# Fundamentos trabalhados
 - Design Pattern: MVC (model-view-controller)
 - Kotlin Builder DSL
 - Motion Layout: Animações intuitivas e elegantes
@@ -18,7 +18,7 @@ O presente repositório é uma cópia do App do Youtube feito para fins de apren
 - Picasso
 
 # Download atualizado (v1.0.0)
-Faça o download clicando [aqui.]()
+Faça o download clicando [aqui.](https://github.com/HugoJordan7/youtube/raw/main/Youtube.apk)
 
 # Visualização
 
@@ -28,8 +28,4 @@ Faça o download clicando [aqui.]()
 
 # Vídeo
 
-
-
 https://github.com/user-attachments/assets/85e3552b-bcbe-4481-96c5-9a5a65e950a7
-
-
