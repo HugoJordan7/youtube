@@ -2,8 +2,10 @@ package com.example.youtube.feature.main.view
 
 import android.health.connect.datatypes.units.Percentage
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -55,6 +57,22 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.mainToolbar)
         supportActionBar?.title = ""
 
+        detailContentBinding.videoDetailDownload.setOnClickListener {
+            Log.i("PlayButtonListener","Click in Play Button")
+            when(detailBinding.playButton.contentDescription){
+                getString(R.string.play_video) ->{
+                    youtubePlayer.play()
+                    detailBinding.playButton.setImageResource(R.drawable.ic_pause_black_24dp)
+                    detailBinding.playButton.contentDescription = getString(R.string.pause_video)
+                }
+                getString(R.string.pause_video) ->{
+                    youtubePlayer.pause()
+                    detailBinding.playButton.setImageResource(R.drawable.ic_play_arrow_white_24dp)
+                    detailBinding.playButton.contentDescription = getString(R.string.play_video)
+                }
+            }
+        }
+
         detailBinding.videoLayer.alpha = 0f
 
         adapter = MainAdapter(emptyList()){ video ->
@@ -84,19 +102,6 @@ class MainActivity : AppCompatActivity() {
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
-
-        detailBinding.playButton.setOnClickListener {
-            when(detailBinding.playButton.contentDescription){
-                getString(R.string.play_video) ->{
-                    youtubePlayer.pause()
-                    detailBinding.playButton.setImageResource(R.drawable.ic_pause_black_24dp)
-                }
-                getString(R.string.pause_video) ->{
-                    youtubePlayer.play()
-                    detailBinding.playButton.setImageResource(R.drawable.ic_play_arrow_white_24dp)
-                }
-            }
-        }
 
     }
 

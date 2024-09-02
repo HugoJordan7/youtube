@@ -4,14 +4,17 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.content.ContextCompat.getString
 import com.example.youtube.R
 import kotlin.math.abs
 
@@ -133,6 +136,8 @@ class TouchMotionLayout(context: Context, attributeSet: AttributeSet) :
     }
 
     private fun doClick(view: View): Boolean {
+        if (playButton.alpha > 0.05f) return false
+
         var isClickHandled = false
 
         if (progress < 0.05f) {
