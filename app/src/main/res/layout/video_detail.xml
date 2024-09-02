@@ -146,7 +146,7 @@
         app:layout_constraintStart_toStartOf="@id/video_player"
         app:layout_constraintEnd_toEndOf="@id/video_player"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/play_button"
         android:src="@drawable/ic_pause_black_24dp"
         style="@style/VideoPlayerItem"
@@ -154,7 +154,8 @@
         app:layout_constraintTop_toTopOf="@id/video_player"
         app:layout_constraintBottom_toBottomOf="@id/video_player"
         app:layout_constraintStart_toStartOf="@id/video_player"
-        app:layout_constraintEnd_toEndOf="@id/video_player"/>
+        app:layout_constraintEnd_toEndOf="@id/video_player"
+        android:contentDescription="@string/pause_video" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/next_button"

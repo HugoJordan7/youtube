@@ -85,6 +85,19 @@ class MainActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
 
+        detailBinding.playButton.setOnClickListener {
+            when(detailBinding.playButton.contentDescription){
+                getString(R.string.play_video) ->{
+                    youtubePlayer.pause()
+                    detailBinding.playButton.setImageResource(R.drawable.ic_pause_black_24dp)
+                }
+                getString(R.string.pause_video) ->{
+                    youtubePlayer.play()
+                    detailBinding.playButton.setImageResource(R.drawable.ic_play_arrow_white_24dp)
+                }
+            }
+        }
+
     }
 
     private fun preparePlayer(){

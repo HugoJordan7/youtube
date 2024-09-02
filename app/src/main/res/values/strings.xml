@@ -8,4 +8,6 @@
     <string name="download">Download</string>
     <string name="save">Save</string>
     <string name="subscribe">Subscribe</string>
+    <string name="pause_video">pause_video</string>
+    <string name="play_video">play_video</string>
 </resources>

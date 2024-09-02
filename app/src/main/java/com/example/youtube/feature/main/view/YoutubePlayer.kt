@@ -56,7 +56,7 @@ class YoutubePlayer(private val context: Context): SurfaceHolder.Callback {
         }
     }
 
-    private fun play(){
+    fun play(){
         mediaPlayer?.play()
     }
 
